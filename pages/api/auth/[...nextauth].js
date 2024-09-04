@@ -1,13 +1,18 @@
+import { connectDB } from "@/util/database";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 
 export const authOptions = {
   providers: [
     GithubProvider({
-      clientId: 'Github에서 발급받은ID',
-      clientSecret: 'Github에서 발급받은Secret',
+      clientId: 'Ov23li6DRvVQXGjP7yrl',
+      clientSecret: 'c0009564f97e0ed4e5c0aebec4f0291e8b1af210',
     }),
   ],
-  secret : 'jwt생성시쓰는암호'
+  secret : 'asdlkj9457!!',
+
+  // db어댑터 세팅
+  adapter : MongoDBAdapter(connectDB) 
 };
 export default NextAuth(authOptions); 

@@ -16,17 +16,35 @@ export default function ListItem({ result }) {
                                 <Link href={`/update/${result[i]._id}`}>글 수정</Link>
                             </button>
                             <br />
-                            <span onClick={(e) => {
-                                fetch('/api/post/delete', { method: 'DELETE', body: result[i]._id })
-                                .then(() => {
+                            <span onClick={async (e) => {
+                                const response = await fetch('/api/post/delete', {
+                                    method: 'DELETE',
+                                    body: result[i]._id
+                                });
+
+                                if (response.ok) { // 서버 응답이 성공적일 때만
                                     e.target.parentElement.style.opacity = 0;
                                     setTimeout(() => {
                                         e.target.parentElement.style.display = 'none';
-                                    }, 1000)
-                                })
+                                    }, 1000);
+                                } else {
+                                    console.error('삭제 실패');
+                                }
                             }}>
                                 🗑️
                             </span>
+
+                            {/* <span onClick={(e) => {
+                                fetch('/api/post/delete', { method: 'DELETE', body: result[i]._id })
+                                    .then(() => {
+                                        e.target.parentElement.style.opacity = 0;
+                                        setTimeout(() => {
+                                            e.target.parentElement.style.display = 'none';
+                                        }, 1000)
+                                    })
+                            }}>
+                                🗑️
+                            </span> */}
 
                         </div>
                     )

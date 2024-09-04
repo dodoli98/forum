@@ -7,7 +7,7 @@ export default async function Home() {
   // 포스트 collection의 모든 데이터를 가져와서 array로 변환한 값을  result에 저장
   let result = await db.collection('post').find().toArray();
 
-  console.log(result);``
+  console.log(result);
 
   return (
     <main>
